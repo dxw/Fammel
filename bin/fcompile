@@ -1,0 +1,14 @@
+#!/usr/bin/php
+<?php
+
+include dirname(__FILE__) . "/../fammel.php";
+
+$input = file_get_contents($argv[1]);
+
+$fammel = new Fammel();
+$fammel->parse($input);
+
+echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
+echo $fammel->fetch();
+
+?>
