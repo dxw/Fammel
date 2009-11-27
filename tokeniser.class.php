@@ -51,7 +51,7 @@ class Tokeniser
    
    public function __construct($input)
    {
-      $this->_input = $input;
+      $this->_input = rtrim($input) . "\n";
       $this->_line = 1;
       $this->_pos = 0;
       $this->_column = 0;
@@ -80,9 +80,9 @@ class Tokeniser
    }
    
    public function get_token()
-   {
+   {      
       $token = null;
-      
+            
       $c = $this->get_char();
 
       if(!$c)
@@ -94,11 +94,12 @@ class Tokeniser
       
       switch($c)
       {
+         case "": $token = new Token('EOF'); break;
          case "\n": $token = new Token('INDENT', $this->get_indent()); break;
             
          case ' ': $token = $this->get_token(); break;
          
-         case '%': $token = new Token('TAG', $this->get_name()); $this->skip_whitespace(); break;
+         case '%': $token = new Token('TAG', $this->get_tag_name()); $this->skip_whitespace(); break;
          case '#': $token = new Token('ID', $this->get_name()); $this->skip_whitespace(); break;
          case '.': $token = new Token('CLASS', $this->get_name()); $this->skip_whitespace(); break;
          
@@ -219,6 +220,20 @@ class Tokeniser
       return $token;
    }
    
+   public function get_tag_name($c = '')
+   {
+      $token = '';
+     
+      do
+      {
+         $token = $token . $c;
+      }
+      while(strlen($c = $this->get_char()) && preg_match('/^[a-zA-Z0-9]+$/', $c));   
+      
+      $this->rewind();
+      return $token;
+   }
+   
    public function get_line($c)
    {
       $token = '';
@@ -229,6 +244,7 @@ class Tokeniser
       }
       while(strlen($c = $this->get_char()) && $c != "\n");
    
+      $this->rewind();
       return $token;
    }
    
@@ -288,8 +304,9 @@ class Tokeniser
       return $token;
    }
 }
+
 /*
-$tok = new Tokeniser(file_get_contents("test.haml"));
+$tok = new Tokeniser(file_get_contents("spec/data/test.haml"));
 $tokens = $tok->get_all_tokens();
 
 print_r($tokens);
