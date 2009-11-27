@@ -4,6 +4,12 @@ include "../tokeniser.class.php";
 
 class DescribeTokeniser extends PHPSpec_Context
 {
+  function it_should_remove_rhs_whitespace_and_add_newline()
+  {
+     $tok = new Tokeniser("abc       ");
+     $this->spec($tok->input())->should->equal("abc\n");
+  }
+  
   function it_should_fetch_the_next_character()
   {
     $tok = new Tokeniser("abc");
@@ -11,7 +17,8 @@ class DescribeTokeniser extends PHPSpec_Context
     $this->spec($tok->get_char())->should->equal('a');
     $this->spec($tok->get_char())->should->equal('b');
     $this->spec($tok->get_char())->should->equal('c');
-    $this->spec($tok->get_char())->should->equal('');
+    $this->spec($tok->get_char())->should->equal("\n");
+    $this->spec($tok->get_char())->should->equal("");
   }
   
   function it_should_go_back_by_one_character()
@@ -70,6 +77,7 @@ class DescribeTokeniser extends PHPSpec_Context
      $tok = new Tokeniser("foo\nbar");
      
      $this->spec($tok->get_line(''))->should->equal('foo');
+     $this->spec($tok->get_char())->should->equal("\n");
      $this->spec($tok->get_line(''))->should->equal('bar');
      
      $tok = new Tokeniser("foo\nbar");
@@ -218,12 +226,12 @@ class DescribeTokeniser extends PHPSpec_Context
   
   function it_should_return_an_array_of_tokens()
   {
-     $tok = new Tokeniser("%tag .class #id :attr-name");
+     $tok = new Tokeniser("%tag .class #id :attr-name\n");
      
      $tokens = $tok->get_all_tokens();
      
      $this->spec(is_array($tokens))->should->beTrue();
-     $this->spec(count($tokens))->should->equal(4);
+     $this->spec(count($tokens))->should->equal(5);
   }
 }
 

@@ -57,6 +57,11 @@ class Tokeniser
       $this->_column = 0;
    }
    
+   public function input()
+   {
+      return $this->_input;
+   }
+   
    public function line()
    {
       return $this->_line;
