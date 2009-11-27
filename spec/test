@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?
+
+require_once '../lib/PHPSpec/Framework.php';
+require '../lib/PHPSpec/Console/Command.php';
+
+exit(0);
+
+?>

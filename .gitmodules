@@ -1,0 +1,3 @@
+[submodule "lib/PHPSpec"]
+	path = lib/PHPSpec
+	url = git://github.com/dxw/PHPSpec.git

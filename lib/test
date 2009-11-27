@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?
+
+require_once WPF_PATH . '/lib/PHPSpec/Framework.php';
+require WPF_PATH . '/lib/PHPSpec/Console/Command.php';
+
+exit(0);
+
+?>
