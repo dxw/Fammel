@@ -149,7 +149,19 @@ class HamlParser extends lime_parser
       if($content)
       {
          $this->render_indent();
+         
+         if($this->_cur_tag)
+         {
+            $this->_rendered .= "  ";
+         }
+         
          $this->_rendered .=  "  $content\n";
+         
+         if($this->_cur_tag)
+         {
+            $this->render_indent();
+            $this->_rendered .= "</$this->_cur_tag>\n";
+         }
       }
       
       $this->_cur_tag = '';
@@ -167,7 +179,19 @@ class HamlParser extends lime_parser
       if($code)
       {
          $this->render_indent();
+         
+         if($this->_cur_tag)
+         {
+            $this->_rendered .= "  ";
+         }
+         
          $this->_rendered .=  "<"."?= $code ?>\n";
+         
+         if($this->_cur_tag)
+         {
+            $this->render_indent();
+            $this->_rendered .= "</$this->_cur_tag>\n";
+         }
       }
       
       $this->_cur_tag = '';
