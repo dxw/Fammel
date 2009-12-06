@@ -119,6 +119,37 @@ class HamlRule
   }
 }
 
+class Expectations
+{
+  public $indent_size;
+  public $max_indent;
+  
+  function __construct()
+  {
+    $this->indent_size = $this->max_indent = 0;
+    
+  }
+  
+  function check($rule)
+  {
+    if($rule->indent && !$this->indent_size)
+    {
+      $this->indent_size = $rule->indent;
+    }
+    
+    //
+    // Is the indent 0 or a multiple of the indent size?
+    //
+    if($this->indent_size)
+    {
+      if($rule->indent % $this->indent_size != 0)
+      {
+        throw new parse_error("Inconsistent indenting")
+      }
+    }
+  }
+}
+
 class HamlParser extends lime_parser
 {
   protected $_ast;
@@ -127,6 +158,8 @@ class HamlParser extends lime_parser
   protected $_cur_attr;
   protected $_cur_tag;
   
+  protected $_expect;
+  
   function __construct()
   {
     $this->_cur_attr = $this->_last_parent = array();
@@ -134,8 +167,10 @@ class HamlParser extends lime_parser
     
     $this->_ast[0] = $this->_last_rule = new HamlRule(0, '', array(), HamlRule::ROOT, '');
     array_unshift($this->_last_parent, $this->_last_rule);
+    
+    $this->_expect = new Expectations();
   }
-  
+
   function add_rule($indent, $tag, $attr, $action, $content)
   {
     if($tag == '' && $content == '')
@@ -145,6 +180,8 @@ class HamlParser extends lime_parser
     
     $new_rule = new HamlRule($indent, $tag, $attr, $action, $content);
     $new_rule->index = count($this->_ast);
+   
+    $this->_expect->check($new_rule))
     
     $this->_ast[] = $new_rule;
     
