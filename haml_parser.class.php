@@ -224,10 +224,13 @@ class HamlParser extends lime_parser
       {
          $this->_rendered .= "<$this->_cur_tag";
 
-         asort($this->_cur_attr);
-         foreach($this->_cur_attr as $name => $value)
+         if(count($this->_cur_attr))
          {
-            $this->_rendered .= " $name=$value";
+            asort($this->_cur_attr);
+            foreach($this->_cur_attr as $name => $value)
+            {
+               $this->_rendered .= " $name=$value";
+            }
          }
          
          $this->_rendered .= ">\n"; 

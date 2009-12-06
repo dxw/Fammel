@@ -23,7 +23,7 @@ class Fammel
    function parse($input)
    {
       $tok = new Tokeniser($input);
-      
+            
       $parser = new parse_engine($this->_haml);
       
       try
@@ -33,10 +33,14 @@ class Fammel
          $tokens = $tok->get_all_tokens();
          $tokens = array_merge(array(new Token('INDENT', 0)), $tokens);
          
+         print_r($tokens);
+         
          foreach($tokens as $t) 
          {
             $parser->eat($t->type(), $t->value());
          }
+         
+         
          
          $parser->eat_eof();
       } 

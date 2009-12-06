@@ -1,8 +1,29 @@
-%h1.title
-  %a{:href=>"#"}
-    = "$foo likes $bar"
+%p = $foo1
+%p bar
+%p
+  = $foo2
+  bar
+%p
+  foo
+  = $bar3
+%p
+  foo
+  bar
+  
+%p.bob
+  %p#bill
+    %p#bill.bob
+
+    %p{:asd => "asd", :qwe => "qwe"}
+    %p{:asd => "asd", :qwe => "qwe"}= $foo
+    %p{:asd => "asd", :qwe => "qwe"} bar
+    
     - if(true)
-      %b True!
-    - do_something();
-    %em = $foo
-    %h2 Title
+      %p true
+    - else
+      %p = "false"
+      
+Some text
+  Some indented text. What should that do?
+    
+
