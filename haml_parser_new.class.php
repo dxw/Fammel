@@ -37,8 +37,6 @@ class HamlRule
   
   public function render()
   {
-    $this->init();
-    
     $indent = $rendered = '';
         
     for($i = 0; $i < $this->indent; $i++)
@@ -66,7 +64,10 @@ class HamlRule
     {
       if($this->tag && $this->content)
       {
-        $rendered .= "  ";
+        for($i = 0; $i < $this->expect->indent_size; $i++)
+        {      
+          $rendered .= " ";
+        }
       }
       
       switch($this->action)
@@ -132,19 +133,23 @@ class Expectations
   
   function check($rule)
   {
+    global $LINE;
+    
     if($rule->indent && !$this->indent_size)
     {
       $this->indent_size = $rule->indent;
     }
     
+    
     //
     // Is the indent 0 or a multiple of the indent size?
     //
+    
     if($this->indent_size)
     {
       if($rule->indent % $this->indent_size != 0)
       {
-        throw new parse_error("Inconsistent indenting")
+        throw new parse_error("Parse error: inconsistent indenting near line $LINE");
       }
     }
   }
@@ -181,7 +186,7 @@ class HamlParser extends lime_parser
     $new_rule = new HamlRule($indent, $tag, $attr, $action, $content);
     $new_rule->index = count($this->_ast);
    
-    $this->_expect->check($new_rule))
+    $this->_expect->check($new_rule);
     
     $this->_ast[] = $new_rule;
     
