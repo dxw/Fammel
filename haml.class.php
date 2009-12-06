@@ -23,7 +23,7 @@ var $qi = 0;
 var $i = array (
   0 => 
   array (
-    'line' => 's 1',
+    'rule' => 's 1',
     'haml_file' => 's 2',
     'INDENT' => 's 4',
     '\'start\'' => 'a \'start\'',
@@ -35,7 +35,7 @@ var $i = array (
   ),
   2 => 
   array (
-    'line' => 's 3',
+    'rule' => 's 3',
     'INDENT' => 's 4',
     '#' => 'r 22',
   ),
@@ -240,7 +240,7 @@ var $i = array (
 );
 function reduce_0_haml_file_1($tokens, &$result) {
 #
-# (0) haml_file :=  line
+# (0) haml_file :=  rule
 #
 $result = reset($tokens);
 
@@ -248,7 +248,7 @@ $result = reset($tokens);
 
 function reduce_1_haml_file_2($tokens, &$result) {
 #
-# (1) haml_file :=  haml_file  line
+# (1) haml_file :=  haml_file  rule
 #
 $result = reset($tokens);
 
@@ -388,54 +388,54 @@ $result = reset($tokens);
 
 }
 
-function reduce_17_line_1($tokens, &$result) {
+function reduce_17_rule_1($tokens, &$result) {
 #
-# (17) line :=  INDENT  tag  content
+# (17) rule :=  INDENT  tag  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i tag content/c ($i, $c)\n"; $this->process_indent($i); $this->process_content_line($c); 
+ echo "INDENT/i tag content/c ($i, $c)\n";        $this->process_content_rule($i, $c); 
 }
 
-function reduce_18_line_2($tokens, &$result) {
+function reduce_18_rule_2($tokens, &$result) {
 #
-# (18) line :=  INDENT  tag  ECHO  content
+# (18) rule :=  INDENT  tag  ECHO  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[3];
- echo "INDENT/i tag ECHO content/c  ($i, $c)\n"; $this->process_indent($i, $c); $this->process_echo_line($c); 
+ echo "INDENT/i tag ECHO content/c  ($i, $c)\n";  $this->process_echo_rule($i, $c); 
 }
 
-function reduce_19_line_3($tokens, &$result) {
+function reduce_19_rule_3($tokens, &$result) {
 #
-# (19) line :=  INDENT  ECHO  content
+# (19) rule :=  INDENT  ECHO  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i ECHO content/c ($i, $c)\n"; $this->process_indent($i, $c); $this->process_echo_line($c); 
+ echo "INDENT/i ECHO content/c ($i, $c)\n";       $this->process_echo_rule($i, $c); 
 }
 
-function reduce_20_line_4($tokens, &$result) {
+function reduce_20_rule_4($tokens, &$result) {
 #
-# (20) line :=  INDENT  EXEC  content
+# (20) rule :=  INDENT  EXEC  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i EXEC content/c ($i, $c)\n"; $this->process_indent($i, $c); $this->process_exec_line($c); 
+ echo "INDENT/i EXEC content/c ($i, $c)\n";       $this->process_exec_rule($i, $c); 
 }
 
-function reduce_21_line_5($tokens, &$result) {
+function reduce_21_rule_5($tokens, &$result) {
 #
-# (21) line :=  INDENT  content
+# (21) rule :=  INDENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[1];
- echo "INDENT/i content/c ($i, $c)\n";  $this->process_indent($i); $this->process_content_line($c); 
+ echo "INDENT/i content/c ($i, $c)\n";            $this->process_content_rule($i, $c); 
 }
 
 function reduce_22_start_1($tokens, &$result) {
@@ -464,11 +464,11 @@ var $method = array (
   14 => 'reduce_14_attribute_list_2',
   15 => 'reduce_15_content_1',
   16 => 'reduce_16_content_2',
-  17 => 'reduce_17_line_1',
-  18 => 'reduce_18_line_2',
-  19 => 'reduce_19_line_3',
-  20 => 'reduce_20_line_4',
-  21 => 'reduce_21_line_5',
+  17 => 'reduce_17_rule_1',
+  18 => 'reduce_18_rule_2',
+  19 => 'reduce_19_rule_3',
+  20 => 'reduce_20_rule_4',
+  21 => 'reduce_21_rule_5',
   22 => 'reduce_22_start_1',
 );
 var $a = array (
@@ -576,31 +576,31 @@ var $a = array (
   ),
   17 => 
   array (
-    'symbol' => 'line',
+    'symbol' => 'rule',
     'len' => 3,
     'replace' => true,
   ),
   18 => 
   array (
-    'symbol' => 'line',
+    'symbol' => 'rule',
     'len' => 4,
     'replace' => true,
   ),
   19 => 
   array (
-    'symbol' => 'line',
+    'symbol' => 'rule',
     'len' => 3,
     'replace' => true,
   ),
   20 => 
   array (
-    'symbol' => 'line',
+    'symbol' => 'rule',
     'len' => 3,
     'replace' => true,
   ),
   21 => 
   array (
-    'symbol' => 'line',
+    'symbol' => 'rule',
     'len' => 2,
     'replace' => true,
   ),

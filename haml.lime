@@ -2,8 +2,8 @@
 %extends HamlParser
 %start haml_file
 
-haml_file = line
-| haml_file line
+haml_file = rule
+| haml_file rule
 .
 
 tag_decl = TAG/t        { $this->process_tag($t, '', ''); } 
@@ -33,9 +33,9 @@ content = LINE_CONTENT
 |
 .
 
-line = INDENT/i tag content/c  { echo "INDENT/i tag content/c ($i, $c)\n"; $this->process_indent($i); $this->process_content_line($c); }
-| INDENT/i tag ECHO content/c  { echo "INDENT/i tag ECHO content/c  ($i, $c)\n"; $this->process_indent($i, $c); $this->process_echo_line($c); }
-| INDENT/i ECHO content/c      { echo "INDENT/i ECHO content/c ($i, $c)\n"; $this->process_indent($i, $c); $this->process_echo_line($c); }
-| INDENT/i EXEC content/c      { echo "INDENT/i EXEC content/c ($i, $c)\n"; $this->process_indent($i, $c); $this->process_exec_line($c); }
-| INDENT/i content/c           { echo "INDENT/i content/c ($i, $c)\n";  $this->process_indent($i); $this->process_content_line($c); }
+rule = INDENT/i tag content/c  { echo "INDENT/i tag content/c ($i, $c)\n";        $this->process_content_rule($i, $c); }
+| INDENT/i tag ECHO content/c  { echo "INDENT/i tag ECHO content/c  ($i, $c)\n";  $this->process_echo_rule($i, $c); }
+| INDENT/i ECHO content/c      { echo "INDENT/i ECHO content/c ($i, $c)\n";       $this->process_echo_rule($i, $c); }
+| INDENT/i EXEC content/c      { echo "INDENT/i EXEC content/c ($i, $c)\n";       $this->process_exec_rule($i, $c); }
+| INDENT/i content/c           { echo "INDENT/i content/c ($i, $c)\n";            $this->process_content_rule($i, $c); }
 .

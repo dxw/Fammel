@@ -9,6 +9,6 @@ $fammel = new Fammel();
 $fammel->parse($input);
 
 echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
-echo $fammel->fetch();
+echo $fammel->render();
 
 ?>

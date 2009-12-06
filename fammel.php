@@ -1,7 +1,7 @@
 <?php
 
 include_once "lib/lime/parse_engine.php";
-include_once "haml_parser.class.php";
+include_once "haml_parser_new.class.php";
 include_once "haml.class.php";
 
 include_once "tokeniser.class.php";
@@ -15,9 +15,9 @@ class Fammel
       $this->_haml = new Haml();
    }
    
-   function fetch()
+   function render()
    {
-      return $this->_haml->fetch();
+      return $this->_haml->render();
    }
    
    function parse($input)
@@ -40,16 +40,12 @@ class Fammel
             $parser->eat($t->type(), $t->value());
          }
          
-         
-         
          $parser->eat_eof();
       } 
       catch(parse_error $e)
       {
          echo $e->getMessage(), "\n";
       }
-      
-      $this->_haml->unwind_indent_stack();
    }
 }
 

@@ -1,5 +1,5 @@
 %p = $foo1
-%p bar
+  %p bar
 %p
   = $foo2
   bar
@@ -14,12 +14,14 @@
   %p#bill
     %p#bill.bob
 
-    %p{:asd => "asd", :qwe => "qwe"}
-    %p{:asd => "asd", :qwe => "qwe"}= $foo
-    %p{:asd => "asd", :qwe => "qwe"} bar
+    .foo{:asd => "asd", :qwe => "qwe"}
+    #bar{:asd => "asd", :qwe => "qwe"}= $foo
+    #foo.bar{:asd => "asd", :qwe => "qwe"} bar
     
     - if(true)
       %p true
+    - elseif($badgers)
+      %p It's a badger!
     - else
       %p = "false"
       
