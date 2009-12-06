@@ -35,20 +35,6 @@ class HamlRule
     $this->children = array();
   }
   
-  public function init()
-  {
-   /* if(count($this->children))
-    {
-      $this->next_sibling = $this->children[count($this->children)-1]->next;
-    }
-    else
-    {
-      $this->next_sibling = $this->next;
-    }
-    */
-    
-  }
-  
   public function render()
   {
     $this->init();
