@@ -116,7 +116,21 @@ class Tokeniser
             if($c == '>')
             {
                $this->skip_whitespace();
-               $token = new Token('ATTR_VALUE', $this->get_attr_value(''));
+               
+               // Eat the opening quote
+               $c = $this->get_char();
+
+               if($c == '"')
+               {
+                 $token = new Token('ATTR_VALUE', $this->get_attr_value(''));
+               }
+               else
+               {
+                 // This is an error condition, but we should let the Parser handle it
+                 // instead of dying here. Return something plausible but grammatically
+
+                 $token = new Token('LINE_CONTENT', $this->get_line($c));
+               }
             }
             else
             {
@@ -285,13 +299,19 @@ class Tokeniser
    {
       $token = '';
       
+      
+      if($eat != '"')
+      {
+        
+      }
+      
       do
       {
          $token = "$token$c";
       }
-      while(strlen($c =$this->get_char()) && $c != ',' && $c != '}');
+      while(strlen($c = $this->get_char()) && $c != '"');
       
-      $this->rewind();
+      // No rewind -- we don't want the closing quote.
       return $token;
    }
    
