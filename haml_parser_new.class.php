@@ -53,7 +53,7 @@ class HamlRule
         asort($this->attr);
         foreach($this->attr as $name => $value)
         {
-          $rendered .= " $name=$value";
+          $rendered .= " $name=\"$value\"";
         }
       }
       
@@ -229,12 +229,12 @@ class HamlParser extends lime_parser
     
     if($id)
     {
-      $this->_cur_attr['id'] = '"' . $id . '"';
+      $this->_cur_attr['id'] = $id;
     }
     
     if($class)
     {
-      $this->_cur_attr['class'] = '"' . $class . '"';
+      $this->_cur_attr['class'] = $class;
     }
   } 
 
