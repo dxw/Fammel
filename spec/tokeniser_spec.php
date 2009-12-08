@@ -106,14 +106,12 @@ class DescribeTokeniser extends PHPSpec_Context
      $this->spec($tok->get_char())->should->equal('a');
   }
   
-  function it_should_get_everything_up_to_comma_or_closing_brace()
+  function it_should_get_everything_up_to_a_quote()
   {
-     $tok = new Tokeniser("abc,def}");
+     $tok = new Tokeniser("abc\"def\"");
      
      $this->spec($tok->get_attr_value(''))->should->equal('abc');
-     $this->spec($tok->get_char())->should->equal(',');
      $this->spec($tok->get_attr_value(''))->should->equal('def');
-     $this->spec($tok->get_char())->should->equal('}');
   }
   
   function it_should_return_an_attribute_name()
