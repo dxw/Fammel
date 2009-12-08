@@ -1,0 +1,16 @@
+#!/usr/bin/php
+<?php
+include dirname(__FILE__) . "/../fammel.php";
+
+$input = file_get_contents($argv[1]);
+
+$tok = new Tokeniser($input);
+
+printf("%3s%3s %-15s %s\n", "L", "C", "Type", "Value");;
+
+foreach($tok->get_all_tokens() as $token)
+{
+  printf("%3.3d%3.3d %15s %s\n", $token->line(), $token->column(), $token->type(), $token->value());
+}
+
+?>
