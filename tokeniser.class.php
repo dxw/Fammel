@@ -276,7 +276,7 @@ class Tokeniser
     {
       $token = $token . $c;
     }
-    while(strlen($c = $this->get_char()) && preg_match('/^[a-zA-Z]+$/', $c));  
+    while(strlen($c = $this->get_char()) && preg_match('/^[0-9a-zA-Z_-]+$/', $c));  
     
     $this->rewind();
     return $token;
@@ -290,7 +290,7 @@ class Tokeniser
     {
       $token = $token . $c;
     }
-    while(strlen($c = $this->get_char()) && preg_match('/^[a-zA-Z0-9]+$/', $c));  
+    while(strlen($c = $this->get_char()) && preg_match('/^[a-zA-Z0-9:_-]+$/', $c));  
     
     $this->rewind();
     return $token;

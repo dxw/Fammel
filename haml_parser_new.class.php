@@ -35,6 +35,14 @@ class HamlRule
     $this->parent = $this->next = $this->prev = null; 
     $this->index = 0;
     $this->children = array();
+    
+    if(count($this->attr['class']))
+    {
+      $classes = explode(' ', $this->attr['class']);
+      $classes = array_unique($classes);
+      sort($classes);
+      $this->attr['class'] = implode(' ', $classes);
+    }
   }
   
   public function render()
@@ -315,18 +323,13 @@ class HamlParser extends lime_parser
     $this->_cur_attr = array();
   }
   
-  function process_tag($tag, $id, $class)
+  function process_tag($tag, $id)
   {
     $this->_cur_tag = $tag;
     
     if($id)
     {
       $this->_cur_attr['id'] = $id;
-    }
-    
-    if($class)
-    {
-      $this->_cur_attr['class'] = $class;
     }
   } 
 
@@ -366,6 +369,18 @@ class HamlParser extends lime_parser
   function process_doctype($doctype)
   {
     $this->add_rule(0, '', array(), HamlRule::DOCTYPE, $doctype);
+  }
+  
+  function process_class($class)
+  {
+    if(isset($this->_cur_attr['class']))
+    {
+      $this->_cur_attr['class'] .= " $class";
+    }
+    else
+    {
+      $this->_cur_attr['class'] = "$class";
+    }
   }
   
   function print_ast()
