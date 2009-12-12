@@ -35,7 +35,7 @@ class DescribeParser extends PHPSpec_Context
       }
       
       $haml = $dir . $file;
-      $html = $dir . str_replace(".haml", ".html", $file);
+      $html = $dir . 'results/' . str_replace(".haml", ".html", $file);
       
       $fammel = new Fammel();
       
