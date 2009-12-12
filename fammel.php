@@ -27,6 +27,11 @@ class Fammel
       return $this->_haml->render();
    }
    
+   function print_ast()
+   {
+     $this->_haml->print_ast();
+   }
+   
    function line()
    {
      return $this->_line;
@@ -63,7 +68,7 @@ class Fammel
   
        return true;
      }
-     catch(Exception $e)
+     catch(parse_error $e)
      {
        $token = $value = '';
        preg_match('/\((.*?)\)\((.*?)\)/', $e->getMessage(), $matches);
