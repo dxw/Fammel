@@ -2,3 +2,24 @@
 /
   Nested
   Comment
+
+/ 
+  It's currently not possible to comment out trees of tags. This sucks. Fixing
+  this will require the grammar to be rethought a bit, as it'll need a rule like:
+  
+  rule = 
+  [etc]
+  COMMENT rule
+  [etc]
+  \.
+  
+  which won't currently work at all. 'rule' gets followed in order to match
+  the line, which means that process_*_rule gets called before the line is matched,
+  and is added to the AST before the code for the line fires. 
+  
+  In summary: you don't find out that the rule is commented until it's too late 
+  to do anything about it.
+  
+%p Here's a
+  %span bunch of HTML
+    %span that someone might want to comment out
