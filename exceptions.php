@@ -1,7 +1,15 @@
 <?php
 
 class FammelIndentExeption extends Exception
-{}
+{
+  public $line;
+  
+  public function __construct($message, $line)
+  {
+    parent::__construct($message);
+    $this->line = $line;
+  }
+}
 
 class FammelParseException extends Exception
 {
