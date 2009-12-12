@@ -14,6 +14,7 @@ for($i = 1; $i < count($argv); $i++)
   } 
   catch(Exception $e)
   {
+    $fammel->print_ast();
     echo $e->getMessage(), "\n";
   }
 }
