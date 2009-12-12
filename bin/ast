@@ -1,0 +1,21 @@
+#!/usr/bin/php
+<?php
+
+include dirname(__FILE__) . "/../fammel.php";
+
+for($i = 1; $i < count($argv); $i++)
+{
+  try
+  {
+    $fammel = new Fammel();
+    $fammel->parse_file($argv[$i]);
+    
+    $fammel->print_ast();
+  } 
+  catch(Exception $e)
+  {
+    echo $e->getMessage(), "\n";
+  }
+}
+
+?>
