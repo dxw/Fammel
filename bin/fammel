@@ -3,17 +3,24 @@
 
 include dirname(__FILE__) . "/../fammel.php";
 
-try
+for($i = 1; $i < count($argv); $i++)
 {
-  $fammel = new Fammel();
-  $fammel->parse_file($argv[1]);
-  
-  //echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
-  echo $fammel->render();
-} 
-catch(FammelParseException $e)
-{
-  print_r($e);
-  echo $e->getMessage(), "\n";
+  try
+  {
+    $fammel = new Fammel();
+    $fammel->parse_file($argv[$i]);
+    
+    //echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
+    $output = $fammel->render();
+
+    file_put_contents(str_replace('.haml', '.html', $argv[$i]), $output);
+    echo $output;
+  } 
+  catch(FammelParseException $e)
+  {
+    print_r($e);
+    echo $e->getMessage(), "\n";
+  }
 }
+
 ?>
