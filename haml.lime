@@ -46,4 +46,5 @@ rule = INDENT/i tag content/c  { /* echo "INDENT/i tag content/c ($i, $c)\n";   
 | INDENT/i HAML_COMMENT content{ /* echo "INDENT/i EXEC content/c ($i, $c)\n";     */  }
 | INDENT/i COMMENT content/c   { /* echo "INDENT/i COMMENT content/c ($i, $c)\n";  */  $this->process_comment_rule($i, $c); }
 | INDENT/i content/c           { /* echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); }
+| INDENT DOCTYPE content/c           { /* DOCTYPE content/c ($c)\n";                      */  $this->process_doctype($c); }
 .
