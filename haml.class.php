@@ -37,7 +37,7 @@ var $i = array (
   array (
     'rule' => 's 3',
     'INDENT' => 's 4',
-    '#' => 'r 32',
+    '#' => 'r 33',
   ),
   3 => 
   array (
@@ -63,6 +63,7 @@ var $i = array (
     'COMMENT' => 's 40',
     'DOCTYPE' => 's 42',
     'content' => 's 44',
+    'ESCAPE' => 's 45',
     'INDENT' => 'r 20',
     '#' => 'r 20',
   ),
@@ -376,6 +377,18 @@ var $i = array (
     'INDENT' => 'r 31',
     '#' => 'r 31',
   ),
+  45 => 
+  array (
+    'LINE_CONTENT' => 's 26',
+    'content' => 's 46',
+    'INDENT' => 'r 20',
+    '#' => 'r 20',
+  ),
+  46 => 
+  array (
+    'INDENT' => 'r 32',
+    '#' => 'r 32',
+  ),
 );
 function reduce_0_haml_file_1($tokens, &$result) {
 #
@@ -665,9 +678,19 @@ $c =& $tokens[1];
  /* echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); 
 }
 
-function reduce_32_start_1($tokens, &$result) {
+function reduce_32_rule_9($tokens, &$result) {
 #
-# (32) 'start' :=  haml_file
+# (32) rule :=  INDENT  ESCAPE  content
+#
+$result = reset($tokens);
+$i =& $tokens[0];
+$c =& $tokens[2];
+$this->process_content_rule($i, $c); 
+}
+
+function reduce_33_start_1($tokens, &$result) {
+#
+# (33) 'start' :=  haml_file
 #
 $result = reset($tokens);
 
@@ -706,7 +729,8 @@ var $method = array (
   29 => 'reduce_29_rule_6',
   30 => 'reduce_30_rule_7',
   31 => 'reduce_31_rule_8',
-  32 => 'reduce_32_start_1',
+  32 => 'reduce_32_rule_9',
+  33 => 'reduce_33_start_1',
 );
 var $a = array (
   0 => 
@@ -902,6 +926,12 @@ var $a = array (
     'replace' => true,
   ),
   32 => 
+  array (
+    'symbol' => 'rule',
+    'len' => 3,
+    'replace' => true,
+  ),
+  33 => 
   array (
     'symbol' => '\'start\'',
     'len' => 1,

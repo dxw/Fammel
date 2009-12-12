@@ -49,12 +49,15 @@ class Tokeniser
   protected $_line;
   protected $_column;
   
+  protected $_just_escaped;
+  
   public function __construct($input)
   {
     $this->_input = rtrim($input) . "\n";
     $this->_line = 1;
     $this->_pos = 0;
     $this->_column = 0;
+    $this->_just_escaped = false;
   }
   
   public function input()
@@ -97,10 +100,23 @@ class Tokeniser
     
     $start_column = $this->_column;
     
+    if($this->_just_escaped)
+    {
+      $this->_just_escaped = false;
+      
+      return new Token('LINE_CONTENT', $this->get_line($c));
+    }
+    
     switch($c)
     {
       case "": $token = new Token('EOF'); break;
       case "\n": $token = new Token('INDENT', $this->get_indent()); break;
+        
+      case '\\':
+         $token = new Token('ESCAPE');
+         $this->_just_escaped = true;
+         
+         break;
         
       case ' ': $token = $this->get_token(); break;
       
@@ -121,7 +137,10 @@ class Tokeniser
          $token = new Token('EXEC'); $this->skip_whitespace(); break;
         }
         
-      case '/': $token = new Token('COMMENT', $this->skip_whitespace()); break;
+      case '/':
+        $token = new Token('COMMENT');
+        $this->skip_whitespace();
+        break;
       
       case '&':
       {
