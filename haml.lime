@@ -10,6 +10,7 @@ tag_decl = TAG/t        { $this->process_tag($t, '', ''); }
 | TAG/t ID/i            { $this->process_tag($t, $i, ''); }
 | TAG/t ID/i CLASS/c    { $this->process_tag($t, $i, $c); }
 | TAG/t CLASS/c         { $this->process_tag($t, '', $c); }
+| TAG/t CLASS/c ID/i    { $this->process_tag($t, $i, $c); }
 | ID/i CLASS/c          { $this->process_tag('div', $i, $c); }
 | ID/i                  { $this->process_tag('div', $i, ''); }
 | CLASS/c               { $this->process_tag('div', '', $c); }

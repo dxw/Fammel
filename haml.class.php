@@ -37,7 +37,7 @@ var $i = array (
   array (
     'rule' => 's 3',
     'INDENT' => 's 4',
-    '#' => 'r 24',
+    '#' => 'r 25',
   ),
   3 => 
   array (
@@ -47,19 +47,19 @@ var $i = array (
   4 => 
   array (
     'TAG' => 's 5',
-    'ID' => 's 9',
-    'CLASS' => 's 11',
-    'tag_decl' => 's 12',
-    'tag_with_attributes' => 's 21',
-    'LINE_CONTENT' => 's 22',
-    'tag' => 's 23',
-    'ECHO' => 's 27',
-    'EXEC' => 's 29',
-    'HAML_COMMENT' => 's 31',
-    'COMMENT' => 's 33',
-    'content' => 's 35',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
+    'ID' => 's 10',
+    'CLASS' => 's 12',
+    'tag_decl' => 's 13',
+    'tag_with_attributes' => 's 22',
+    'LINE_CONTENT' => 's 23',
+    'tag' => 's 24',
+    'ECHO' => 's 28',
+    'EXEC' => 's 30',
+    'HAML_COMMENT' => 's 32',
+    'COMMENT' => 's 34',
+    'content' => 's 36',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
   5 => 
   array (
@@ -90,6 +90,7 @@ var $i = array (
   ),
   8 => 
   array (
+    'ID' => 's 9',
     'ATTR_START' => 'r 5',
     'ECHO' => 'r 5',
     'LINE_CONTENT' => 'r 5',
@@ -98,170 +99,178 @@ var $i = array (
   ),
   9 => 
   array (
-    'CLASS' => 's 10',
-    'ATTR_START' => 'r 7',
-    'ECHO' => 'r 7',
-    'LINE_CONTENT' => 'r 7',
-    'INDENT' => 'r 7',
-    '#' => 'r 7',
-  ),
-  10 => 
-  array (
     'ATTR_START' => 'r 6',
     'ECHO' => 'r 6',
     'LINE_CONTENT' => 'r 6',
     'INDENT' => 'r 6',
     '#' => 'r 6',
   ),
-  11 => 
+  10 => 
   array (
+    'CLASS' => 's 11',
     'ATTR_START' => 'r 8',
     'ECHO' => 'r 8',
     'LINE_CONTENT' => 'r 8',
     'INDENT' => 'r 8',
     '#' => 'r 8',
   ),
+  11 => 
+  array (
+    'ATTR_START' => 'r 7',
+    'ECHO' => 'r 7',
+    'LINE_CONTENT' => 'r 7',
+    'INDENT' => 'r 7',
+    '#' => 'r 7',
+  ),
   12 => 
   array (
-    'tag_attributes' => 's 13',
-    'ATTR_START' => 's 14',
-    'ECHO' => 'r 10',
-    'LINE_CONTENT' => 'r 10',
-    'INDENT' => 'r 10',
-    '#' => 'r 10',
-  ),
-  13 => 
-  array (
+    'ATTR_START' => 'r 9',
     'ECHO' => 'r 9',
     'LINE_CONTENT' => 'r 9',
     'INDENT' => 'r 9',
     '#' => 'r 9',
   ),
+  13 => 
+  array (
+    'tag_attributes' => 's 14',
+    'ATTR_START' => 's 15',
+    'ECHO' => 'r 11',
+    'LINE_CONTENT' => 'r 11',
+    'INDENT' => 'r 11',
+    '#' => 'r 11',
+  ),
   14 => 
   array (
-    'attribute_list' => 's 15',
-    'ATTR_NAME' => 's 18',
+    'ECHO' => 'r 10',
+    'LINE_CONTENT' => 'r 10',
+    'INDENT' => 'r 10',
+    '#' => 'r 10',
   ),
   15 => 
   array (
-    'ATTR_END' => 's 16',
-    'ATTR_SEP' => 's 17',
+    'attribute_list' => 's 16',
+    'ATTR_NAME' => 's 19',
   ),
   16 => 
+  array (
+    'ATTR_END' => 's 17',
+    'ATTR_SEP' => 's 18',
+  ),
+  17 => 
+  array (
+    'ECHO' => 'r 13',
+    'LINE_CONTENT' => 'r 13',
+    'INDENT' => 'r 13',
+    '#' => 'r 13',
+  ),
+  18 => 
+  array (
+    'ATTR_NAME' => 's 19',
+    'attribute_list' => 's 21',
+  ),
+  19 => 
+  array (
+    'ATTR_VALUE' => 's 20',
+  ),
+  20 => 
+  array (
+    'ATTR_SEP' => 'r 14',
+    'ATTR_END' => 'r 14',
+  ),
+  21 => 
+  array (
+    'ATTR_SEP' => 's 18',
+    'ATTR_END' => 'r 15',
+  ),
+  22 => 
   array (
     'ECHO' => 'r 12',
     'LINE_CONTENT' => 'r 12',
     'INDENT' => 'r 12',
     '#' => 'r 12',
   ),
-  17 => 
-  array (
-    'ATTR_NAME' => 's 18',
-    'attribute_list' => 's 20',
-  ),
-  18 => 
-  array (
-    'ATTR_VALUE' => 's 19',
-  ),
-  19 => 
-  array (
-    'ATTR_SEP' => 'r 13',
-    'ATTR_END' => 'r 13',
-  ),
-  20 => 
-  array (
-    'ATTR_SEP' => 's 17',
-    'ATTR_END' => 'r 14',
-  ),
-  21 => 
-  array (
-    'ECHO' => 'r 11',
-    'LINE_CONTENT' => 'r 11',
-    'INDENT' => 'r 11',
-    '#' => 'r 11',
-  ),
-  22 => 
-  array (
-    'INDENT' => 'r 15',
-    '#' => 'r 15',
-  ),
   23 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 24',
-    'ECHO' => 's 25',
     'INDENT' => 'r 16',
     '#' => 'r 16',
   ),
   24 => 
   array (
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 25',
+    'ECHO' => 's 26',
     'INDENT' => 'r 17',
     '#' => 'r 17',
   ),
   25 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 26',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
-  ),
-  26 => 
-  array (
     'INDENT' => 'r 18',
     '#' => 'r 18',
   ),
-  27 => 
+  26 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 28',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 27',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
-  28 => 
+  27 => 
   array (
     'INDENT' => 'r 19',
     '#' => 'r 19',
   ),
-  29 => 
+  28 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 30',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 29',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
-  30 => 
+  29 => 
   array (
     'INDENT' => 'r 20',
     '#' => 'r 20',
   ),
-  31 => 
+  30 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 32',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 31',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
-  32 => 
+  31 => 
   array (
     'INDENT' => 'r 21',
     '#' => 'r 21',
   ),
-  33 => 
+  32 => 
   array (
-    'LINE_CONTENT' => 's 22',
-    'content' => 's 34',
-    'INDENT' => 'r 16',
-    '#' => 'r 16',
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 33',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
-  34 => 
+  33 => 
   array (
     'INDENT' => 'r 22',
     '#' => 'r 22',
+  ),
+  34 => 
+  array (
+    'LINE_CONTENT' => 's 23',
+    'content' => 's 35',
+    'INDENT' => 'r 17',
+    '#' => 'r 17',
   ),
   35 => 
   array (
     'INDENT' => 'r 23',
     '#' => 'r 23',
+  ),
+  36 => 
+  array (
+    'INDENT' => 'r 24',
+    '#' => 'r 24',
   ),
 );
 function reduce_0_haml_file_1($tokens, &$result) {
@@ -322,7 +331,18 @@ $c =& $tokens[1];
 
 function reduce_6_tag_decl_5($tokens, &$result) {
 #
-# (6) tag_decl :=  ID  CLASS
+# (6) tag_decl :=  TAG  CLASS  ID
+#
+$result = reset($tokens);
+$t =& $tokens[0];
+$c =& $tokens[1];
+$i =& $tokens[2];
+ $this->process_tag($t, $i, $c); 
+}
+
+function reduce_7_tag_decl_6($tokens, &$result) {
+#
+# (7) tag_decl :=  ID  CLASS
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -330,59 +350,59 @@ $c =& $tokens[1];
  $this->process_tag('div', $i, $c); 
 }
 
-function reduce_7_tag_decl_6($tokens, &$result) {
+function reduce_8_tag_decl_7($tokens, &$result) {
 #
-# (7) tag_decl :=  ID
+# (8) tag_decl :=  ID
 #
 $result = reset($tokens);
 $i =& $tokens[0];
  $this->process_tag('div', $i, ''); 
 }
 
-function reduce_8_tag_decl_7($tokens, &$result) {
+function reduce_9_tag_decl_8($tokens, &$result) {
 #
-# (8) tag_decl :=  CLASS
+# (9) tag_decl :=  CLASS
 #
 $result = reset($tokens);
 $c =& $tokens[0];
  $this->process_tag('div', '', $c); 
 }
 
-function reduce_9_tag_with_attributes_1($tokens, &$result) {
+function reduce_10_tag_with_attributes_1($tokens, &$result) {
 #
-# (9) tag_with_attributes :=  tag_decl  tag_attributes
-#
-$result = reset($tokens);
-
-}
-
-function reduce_10_tag_1($tokens, &$result) {
-#
-# (10) tag :=  tag_decl
+# (10) tag_with_attributes :=  tag_decl  tag_attributes
 #
 $result = reset($tokens);
 
 }
 
-function reduce_11_tag_2($tokens, &$result) {
+function reduce_11_tag_1($tokens, &$result) {
 #
-# (11) tag :=  tag_with_attributes
-#
-$result = reset($tokens);
-
-}
-
-function reduce_12_tag_attributes_1($tokens, &$result) {
-#
-# (12) tag_attributes :=  ATTR_START  attribute_list  ATTR_END
+# (11) tag :=  tag_decl
 #
 $result = reset($tokens);
 
 }
 
-function reduce_13_attribute_list_1($tokens, &$result) {
+function reduce_12_tag_2($tokens, &$result) {
 #
-# (13) attribute_list :=  ATTR_NAME  ATTR_VALUE
+# (12) tag :=  tag_with_attributes
+#
+$result = reset($tokens);
+
+}
+
+function reduce_13_tag_attributes_1($tokens, &$result) {
+#
+# (13) tag_attributes :=  ATTR_START  attribute_list  ATTR_END
+#
+$result = reset($tokens);
+
+}
+
+function reduce_14_attribute_list_1($tokens, &$result) {
+#
+# (14) attribute_list :=  ATTR_NAME  ATTR_VALUE
 #
 $result = reset($tokens);
 $n =& $tokens[0];
@@ -390,33 +410,33 @@ $v =& $tokens[1];
  $this->process_attr($n, $v);
 }
 
-function reduce_14_attribute_list_2($tokens, &$result) {
+function reduce_15_attribute_list_2($tokens, &$result) {
 #
-# (14) attribute_list :=  attribute_list  ATTR_SEP  attribute_list
-#
-$result = reset($tokens);
-
-}
-
-function reduce_15_content_1($tokens, &$result) {
-#
-# (15) content :=  LINE_CONTENT
+# (15) attribute_list :=  attribute_list  ATTR_SEP  attribute_list
 #
 $result = reset($tokens);
 
 }
 
-function reduce_16_content_2($tokens, &$result) {
+function reduce_16_content_1($tokens, &$result) {
 #
-# (16) content :=
+# (16) content :=  LINE_CONTENT
 #
 $result = reset($tokens);
 
 }
 
-function reduce_17_rule_1($tokens, &$result) {
+function reduce_17_content_2($tokens, &$result) {
 #
-# (17) rule :=  INDENT  tag  content
+# (17) content :=
+#
+$result = reset($tokens);
+
+}
+
+function reduce_18_rule_1($tokens, &$result) {
+#
+# (18) rule :=  INDENT  tag  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -424,9 +444,9 @@ $c =& $tokens[2];
  /* echo "INDENT/i tag content/c ($i, $c)\n";      */  $this->process_content_rule($i, $c); 
 }
 
-function reduce_18_rule_2($tokens, &$result) {
+function reduce_19_rule_2($tokens, &$result) {
 #
-# (18) rule :=  INDENT  tag  ECHO  content
+# (19) rule :=  INDENT  tag  ECHO  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -434,9 +454,9 @@ $c =& $tokens[3];
  /* echo "INDENT/i tag ECHO content/c  ($i, $c)\n";*/  $this->process_echo_rule($i, $c); 
 }
 
-function reduce_19_rule_3($tokens, &$result) {
+function reduce_20_rule_3($tokens, &$result) {
 #
-# (19) rule :=  INDENT  ECHO  content
+# (20) rule :=  INDENT  ECHO  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -444,9 +464,9 @@ $c =& $tokens[2];
  /* echo "INDENT/i ECHO content/c ($i, $c)\n";     */  $this->process_echo_rule($i, $c); 
 }
 
-function reduce_20_rule_4($tokens, &$result) {
+function reduce_21_rule_4($tokens, &$result) {
 #
-# (20) rule :=  INDENT  EXEC  content
+# (21) rule :=  INDENT  EXEC  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -454,18 +474,18 @@ $c =& $tokens[2];
  /* echo "INDENT/i EXEC content/c ($i, $c)\n";     */  $this->process_exec_rule($i, $c); 
 }
 
-function reduce_21_rule_5($tokens, &$result) {
+function reduce_22_rule_5($tokens, &$result) {
 #
-# (21) rule :=  INDENT  HAML_COMMENT  content
+# (22) rule :=  INDENT  HAML_COMMENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
  /* echo "INDENT/i EXEC content/c ($i, $c)\n";     */  
 }
 
-function reduce_22_rule_6($tokens, &$result) {
+function reduce_23_rule_6($tokens, &$result) {
 #
-# (22) rule :=  INDENT  COMMENT  content
+# (23) rule :=  INDENT  COMMENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -473,9 +493,9 @@ $c =& $tokens[2];
  /* echo "INDENT/i COMMENT content/c ($i, $c)\n";  */  $this->process_comment_rule($i, $c); 
 }
 
-function reduce_23_rule_7($tokens, &$result) {
+function reduce_24_rule_7($tokens, &$result) {
 #
-# (23) rule :=  INDENT  content
+# (24) rule :=  INDENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
@@ -483,9 +503,9 @@ $c =& $tokens[1];
  /* echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); 
 }
 
-function reduce_24_start_1($tokens, &$result) {
+function reduce_25_start_1($tokens, &$result) {
 #
-# (24) 'start' :=  haml_file
+# (25) 'start' :=  haml_file
 #
 $result = reset($tokens);
 
@@ -501,22 +521,23 @@ var $method = array (
   6 => 'reduce_6_tag_decl_5',
   7 => 'reduce_7_tag_decl_6',
   8 => 'reduce_8_tag_decl_7',
-  9 => 'reduce_9_tag_with_attributes_1',
-  10 => 'reduce_10_tag_1',
-  11 => 'reduce_11_tag_2',
-  12 => 'reduce_12_tag_attributes_1',
-  13 => 'reduce_13_attribute_list_1',
-  14 => 'reduce_14_attribute_list_2',
-  15 => 'reduce_15_content_1',
-  16 => 'reduce_16_content_2',
-  17 => 'reduce_17_rule_1',
-  18 => 'reduce_18_rule_2',
-  19 => 'reduce_19_rule_3',
-  20 => 'reduce_20_rule_4',
-  21 => 'reduce_21_rule_5',
-  22 => 'reduce_22_rule_6',
-  23 => 'reduce_23_rule_7',
-  24 => 'reduce_24_start_1',
+  9 => 'reduce_9_tag_decl_8',
+  10 => 'reduce_10_tag_with_attributes_1',
+  11 => 'reduce_11_tag_1',
+  12 => 'reduce_12_tag_2',
+  13 => 'reduce_13_tag_attributes_1',
+  14 => 'reduce_14_attribute_list_1',
+  15 => 'reduce_15_attribute_list_2',
+  16 => 'reduce_16_content_1',
+  17 => 'reduce_17_content_2',
+  18 => 'reduce_18_rule_1',
+  19 => 'reduce_19_rule_2',
+  20 => 'reduce_20_rule_3',
+  21 => 'reduce_21_rule_4',
+  22 => 'reduce_22_rule_5',
+  23 => 'reduce_23_rule_6',
+  24 => 'reduce_24_rule_7',
+  25 => 'reduce_25_start_1',
 );
 var $a = array (
   0 => 
@@ -558,13 +579,13 @@ var $a = array (
   6 => 
   array (
     'symbol' => 'tag_decl',
-    'len' => 2,
+    'len' => 3,
     'replace' => true,
   ),
   7 => 
   array (
     'symbol' => 'tag_decl',
-    'len' => 1,
+    'len' => 2,
     'replace' => true,
   ),
   8 => 
@@ -575,14 +596,14 @@ var $a = array (
   ),
   9 => 
   array (
-    'symbol' => 'tag_with_attributes',
-    'len' => 2,
+    'symbol' => 'tag_decl',
+    'len' => 1,
     'replace' => true,
   ),
   10 => 
   array (
-    'symbol' => 'tag',
-    'len' => 1,
+    'symbol' => 'tag_with_attributes',
+    'len' => 2,
     'replace' => true,
   ),
   11 => 
@@ -593,50 +614,50 @@ var $a = array (
   ),
   12 => 
   array (
-    'symbol' => 'tag_attributes',
-    'len' => 3,
+    'symbol' => 'tag',
+    'len' => 1,
     'replace' => true,
   ),
   13 => 
   array (
-    'symbol' => 'attribute_list',
-    'len' => 2,
+    'symbol' => 'tag_attributes',
+    'len' => 3,
     'replace' => true,
   ),
   14 => 
   array (
     'symbol' => 'attribute_list',
-    'len' => 3,
+    'len' => 2,
     'replace' => true,
   ),
   15 => 
   array (
-    'symbol' => 'content',
-    'len' => 1,
+    'symbol' => 'attribute_list',
+    'len' => 3,
     'replace' => true,
   ),
   16 => 
   array (
     'symbol' => 'content',
-    'len' => 0,
+    'len' => 1,
     'replace' => true,
   ),
   17 => 
   array (
-    'symbol' => 'rule',
-    'len' => 3,
+    'symbol' => 'content',
+    'len' => 0,
     'replace' => true,
   ),
   18 => 
   array (
     'symbol' => 'rule',
-    'len' => 4,
+    'len' => 3,
     'replace' => true,
   ),
   19 => 
   array (
     'symbol' => 'rule',
-    'len' => 3,
+    'len' => 4,
     'replace' => true,
   ),
   20 => 
@@ -660,10 +681,16 @@ var $a = array (
   23 => 
   array (
     'symbol' => 'rule',
-    'len' => 2,
+    'len' => 3,
     'replace' => true,
   ),
   24 => 
+  array (
+    'symbol' => 'rule',
+    'len' => 2,
+    'replace' => true,
+  ),
+  25 => 
   array (
     'symbol' => '\'start\'',
     'len' => 1,
