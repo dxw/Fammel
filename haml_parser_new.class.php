@@ -287,8 +287,16 @@ class HamlParser extends lime_parser
     $this->add_rule($indent, '', array(), HamlRule::COMMENT, $content);
   }
   
-  function process_echo_rule($indent, $code)
+  function process_echo_rule($indent, $code, $escaping)
   {    
+    switch($escaping)
+    {
+      case 'PLAIN_ECHO':
+      case 'ESCAPED_ECHO':
+        $code = "htmlentities($code);";
+        break;
+    }
+    
     $this->add_rule($indent, $this->_cur_tag, $this->_cur_attr, HamlRule::EXEC_ECHO, $code);
   }
   
