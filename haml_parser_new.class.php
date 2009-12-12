@@ -146,12 +146,12 @@ class HamlRule
         break;
         
       case HamlRule::CONTENT:   if($this->content) $rendered .= "$indent$this->content"; break;
-      case HamlRule::EXEC_ECHO: $rendered .= "$indent<?= $this->content ?>"; break;
+      case HamlRule::EXEC_ECHO: $rendered .= "$indent<?php echo $this->content ?>"; break;
       case HamlRule::EXEC:    
         
         if(!($this->prev_sibling->action == HamlRule::EXEC && $this->prev_sibling->next->indent > $this->prev_sibling->indent))
         {
-          $rendered .= "$indent<? ";
+          $rendered .= "$indent<?php ";
         }
     
         $rendered .= "$this->content";
@@ -181,7 +181,7 @@ class HamlRule
       switch($this->action)
       {
         case HamlRule::EXEC:
-          $rendered .= "$indent<? } ";
+          $rendered .= "$indent<?php } ";
           
           if(!($this->next_sibling->action == HamlRule::EXEC && $this->next_sibling->next->indent > $this->next_sibling->indent))
           {
