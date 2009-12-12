@@ -1,0 +1,39 @@
+<? if(true) { ?>
+  <p>
+    true
+    <? if(true) { ?>
+      <p>
+        true
+        <? if(true) { ?>
+          <p>
+            true
+            <? if(true) { ?>
+              <p>
+                true
+              </p>
+            <? }  ?>
+          </p>
+        <? } else { ?>
+          <p>
+            false
+          </p>
+        <? }  ?>
+      </p>
+    <? } elseif($foo) { ?>
+      <p>
+        foo
+      </p>
+    <? } else { ?>
+      <p>
+        false
+      </p>
+    <? }  ?>
+  </p>
+<? } else { ?>
+  <p>
+    false
+  </p>
+<? }  ?>
+<p>
+  end
+</p>

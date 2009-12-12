@@ -1,0 +1,18 @@
+- if(true)
+  %p true
+    - if(true)
+      %p true
+        - if(true)
+          %p true
+            - if(true)
+              %p true
+        - else
+          %p false
+    - elseif($foo)
+      %p foo
+    - else 
+      %p false
+- else
+  %p false
+
+%p end
