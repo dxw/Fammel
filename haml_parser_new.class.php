@@ -71,11 +71,6 @@ class HamlRule
       }
     }
     
-    if($this->tag && $this->content)
-    {
-     // $rendered .= "~~";
-    }
-    
     switch($this->action)
     {
       case HamlRule::COMMENT:
@@ -156,22 +151,27 @@ class HamlRule
 
 class Expectations
 {
-  static public $indent_size;
+  public $indent_size;
   public $max_indent;
+  protected $_got_indent_size;
   
   function __construct()
   {
-    $this->indent_size = $this->max_indent = 0;
+    global $indent_size;
+    
+    $this->_got_indent_size = false;
+    $this->indent_size = $this->max_indent = $indent_size = 2;
   }
   
   function check($rule)
   {
     global $LINE;
     
-    if($rule->indent && !$this->indent_size)
+    if($rule->indent && !$this->_got_indent_size)
     {
       global $indent_size;
-      $indent_size =$this->indent_size = $rule->indent;
+      $indent_size = $this->indent_size = $rule->indent;
+      $this->_got_indent_size = true;
     }
     
     
@@ -183,7 +183,7 @@ class Expectations
     {
       if($rule->indent % $this->indent_size != 0)
       {
-        throw new parse_error("Parse error: inconsistent indenting near line $LINE");
+        throw new FammelIndentExeption("Parse error: inconsistent indenting near line $LINE");
       }
     }
   }
@@ -317,7 +317,7 @@ class HamlParser extends lime_parser
   
   function render()
   {
-    $this->print_ast();
+   // $this->print_ast();
     
     $this->_rendered = $this->_ast[0]->render();
     

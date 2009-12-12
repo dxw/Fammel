@@ -5,16 +5,15 @@ include dirname(__FILE__) . "/../fammel.php";
 
 try
 {
-  $input = file_get_contents($argv[1]);
-  
   $fammel = new Fammel();
-  $fammel->parse($input);
+  $fammel->parse_file($argv[1]);
   
-  echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
+  //echo "HAML:\n\n$input\n\n\nRESULT:\n\n";
   echo $fammel->render();
 } 
-catch(parse_error $e)
+catch(FammelParseException $e)
 {
+  print_r($e);
   echo $e->getMessage(), "\n";
 }
 ?>

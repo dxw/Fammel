@@ -421,7 +421,7 @@ function reduce_17_rule_1($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i tag content/c ($i, $c)\n";        $this->process_content_rule($i, $c); 
+ /* echo "INDENT/i tag content/c ($i, $c)\n";      */  $this->process_content_rule($i, $c); 
 }
 
 function reduce_18_rule_2($tokens, &$result) {
@@ -431,7 +431,7 @@ function reduce_18_rule_2($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[3];
- echo "INDENT/i tag ECHO content/c  ($i, $c)\n";  $this->process_echo_rule($i, $c); 
+ /* echo "INDENT/i tag ECHO content/c  ($i, $c)\n";*/  $this->process_echo_rule($i, $c); 
 }
 
 function reduce_19_rule_3($tokens, &$result) {
@@ -441,7 +441,7 @@ function reduce_19_rule_3($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i ECHO content/c ($i, $c)\n";       $this->process_echo_rule($i, $c); 
+ /* echo "INDENT/i ECHO content/c ($i, $c)\n";     */  $this->process_echo_rule($i, $c); 
 }
 
 function reduce_20_rule_4($tokens, &$result) {
@@ -451,7 +451,7 @@ function reduce_20_rule_4($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i EXEC content/c ($i, $c)\n";       $this->process_exec_rule($i, $c); 
+ /* echo "INDENT/i EXEC content/c ($i, $c)\n";     */  $this->process_exec_rule($i, $c); 
 }
 
 function reduce_21_rule_5($tokens, &$result) {
@@ -460,7 +460,7 @@ function reduce_21_rule_5($tokens, &$result) {
 #
 $result = reset($tokens);
 $i =& $tokens[0];
- echo "INDENT/i EXEC content/c ($i, $c)\n";       
+ /* echo "INDENT/i EXEC content/c ($i, $c)\n";     */  
 }
 
 function reduce_22_rule_6($tokens, &$result) {
@@ -470,7 +470,7 @@ function reduce_22_rule_6($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- echo "INDENT/i COMMENT content/c ($i, $c)\n";    $this->process_comment_rule($i, $c); 
+ /* echo "INDENT/i COMMENT content/c ($i, $c)\n";  */  $this->process_comment_rule($i, $c); 
 }
 
 function reduce_23_rule_7($tokens, &$result) {
@@ -480,7 +480,7 @@ function reduce_23_rule_7($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[1];
- echo "INDENT/i content/c ($i, $c)\n";            $this->process_content_rule($i, $c); 
+ /* echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); 
 }
 
 function reduce_24_start_1($tokens, &$result) {
