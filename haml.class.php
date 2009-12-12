@@ -61,8 +61,8 @@ var $i = array (
     'EXEC' => 's 36',
     'HAML_COMMENT' => 's 38',
     'COMMENT' => 's 40',
-    'content' => 's 42',
-    'DOCTYPE' => 's 43',
+    'DOCTYPE' => 's 42',
+    'content' => 's 44',
     'INDENT' => 'r 20',
     '#' => 'r 20',
   ),
@@ -361,15 +361,15 @@ var $i = array (
   ),
   42 => 
   array (
-    'INDENT' => 'r 30',
-    '#' => 'r 30',
+    'LINE_CONTENT' => 's 26',
+    'content' => 's 43',
+    'INDENT' => 'r 20',
+    '#' => 'r 20',
   ),
   43 => 
   array (
-    'LINE_CONTENT' => 's 26',
-    'content' => 's 44',
-    'INDENT' => 'r 20',
-    '#' => 'r 20',
+    'INDENT' => 'r 30',
+    '#' => 'r 30',
   ),
   44 => 
   array (
@@ -648,21 +648,21 @@ $c =& $tokens[2];
 
 function reduce_30_rule_7($tokens, &$result) {
 #
-# (30) rule :=  INDENT  content
+# (30) rule :=  INDENT  DOCTYPE  content
+#
+$result = reset($tokens);
+$c =& $tokens[2];
+ /* DOCTYPE content/c ($c)\n";                      */  $this->process_doctype($c); 
+}
+
+function reduce_31_rule_8($tokens, &$result) {
+#
+# (31) rule :=  INDENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[1];
  /* echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); 
-}
-
-function reduce_31_rule_8($tokens, &$result) {
-#
-# (31) rule :=  INDENT  DOCTYPE  content
-#
-$result = reset($tokens);
-$c =& $tokens[2];
- /* DOCTYPE content/c ($c)\n";                      */  $this->process_doctype($c); 
 }
 
 function reduce_32_start_1($tokens, &$result) {
@@ -892,13 +892,13 @@ var $a = array (
   30 => 
   array (
     'symbol' => 'rule',
-    'len' => 2,
+    'len' => 3,
     'replace' => true,
   ),
   31 => 
   array (
     'symbol' => 'rule',
-    'len' => 3,
+    'len' => 2,
     'replace' => true,
   ),
   32 => 

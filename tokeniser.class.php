@@ -193,7 +193,7 @@ class Tokeniser
           }
           else
           {
-            $token = new Token('LINE_CONTENT', $doctype); break;
+            $token = new Token('LINE_CONTENT', $this->get_line($doctype)); break;
           }
         }
         
