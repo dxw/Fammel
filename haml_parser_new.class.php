@@ -166,7 +166,7 @@ class HamlRule
         break;
     }
     
-    if($this->content)
+    if($this->content || (!$this->content && !$this->tag))
     {
       $rendered .= "\n";
     }
@@ -280,7 +280,7 @@ class HamlParser extends lime_parser
   {
     if($action != HamlRule::COMMENT && $action != HamlRule::DOCTYPE && $tag == '' && $content == '')
     { 
-      return;
+   //   return;
     }
     
     $new_rule = new HamlRule($indent, $tag, $attr, $action, $content);
