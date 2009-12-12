@@ -2,7 +2,7 @@
 
 class DescribeParser extends PHPSpec_Context
 {
-  function parse_test_file($file, $expect_line)
+  function parse_test_file($file, $expect_line, $expect_class = 'FammelParseException')
   {
     $fammel = new Fammel();
 
@@ -12,7 +12,7 @@ class DescribeParser extends PHPSpec_Context
     }
     catch(Exception $e)
     {
-      $this->spec($e)->should->beAnInstanceOf(FammelParseException);
+      $this->spec($e)->should->beAnInstanceOf($expect_class);
       $this->spec($e->line)->should->equal($expect_line);
       return $e;
     }
@@ -56,7 +56,7 @@ class DescribeParser extends PHPSpec_Context
       catch(Exception $e)
       {
         // None of these should fail
-        $this->fail();
+        $this->fail('Rendering failed' . $e->getMessage());
       }  
       
       $this->spec($rendered)->should->equal(file_get_contents($html));
@@ -105,4 +105,13 @@ class DescribeParser extends PHPSpec_Context
     $this->spec($e->token)->should->equal('ATTR_NAME');
   }
    
+  function it_should_fail_on_inconsistent_indent()
+  {
+    $e = $this->parse_test_file(dirname(__FILE__) . '/data/fail_on_inconsistent_indent.haml', 3 , 'FammelIndentExeption');
+  }
+  
+  function it_should_fail_on_huge_indent()
+  {
+    $e = $this->parse_test_file(dirname(__FILE__) . '/data/fail_on_huge_indent.haml', 3 , 'FammelIndentExeption');
+  }
 }
