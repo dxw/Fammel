@@ -1,10 +1,10 @@
 #!/usr/bin/php
 <?
 
-include "../fammel.php";
+include dirname(__FILE__) . "/../fammel.php";
 
-require_once '../lib/PHPSpec/Framework.php';
-require '../lib/PHPSpec/Console/Command.php';
+require_once dirname(__FILE__) . '/../lib/PHPSpec/Framework.php';
+require dirname(__FILE__) . '/../lib/PHPSpec/Console/Command.php';
 
 exit(0);
 
