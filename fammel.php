@@ -40,6 +40,8 @@ class Fammel
      }
      
      $parser->eat_eof();
+
+     return true;
    }
 }
 

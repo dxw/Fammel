@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?
 
+include "../fammel.php";
+
 require_once '../lib/PHPSpec/Framework.php';
 require '../lib/PHPSpec/Console/Command.php';
 

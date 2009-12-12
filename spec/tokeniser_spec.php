@@ -1,7 +1,5 @@
 <?php
 
-include "../tokeniser.class.php";
-
 class DescribeTokeniser extends PHPSpec_Context
 {
   function it_should_remove_rhs_whitespace_and_add_newline()

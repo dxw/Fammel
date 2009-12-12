@@ -1,8 +1,13 @@
+-# A HAML comment. Shouldn't be rendered
+/ An HTML comment. Should be rendered
 %p = $foo1
   %p bar
   %p
   = $foo2
   bar
+/
+  A multline
+  comment
 %p
   foo
   = $bar3

@@ -6,6 +6,7 @@ class HamlRule
   const EXEC_ECHO = 'echo';
   const EXEC = 'exec';
   const ROOT = 'root';
+  const COMMENT = 'comment';
   
   public $indent;
   public $tag;
@@ -37,6 +38,8 @@ class HamlRule
   
   public function render()
   {
+    global $indent_size;
+    
     $indent = $rendered = '';
         
     for($i = 0; $i < $this->indent; $i++)
@@ -60,39 +63,59 @@ class HamlRule
       $rendered .= ">\n";
     }
     
+    if($this->tag && $this->content)
+    {
+      for($i = 0; $i < $indent_size; $i++)
+      {      
+        $rendered .= " ";
+      }
+    }
+    
+    if($this->tag && $this->content)
+    {
+     // $rendered .= "~~";
+    }
+    
+    switch($this->action)
+    {
+      case HamlRule::COMMENT:
+
+        $rendered .= "$indent<!-- $this->content";
+        
+        if($this->next->indent <= $this->indent)
+        {
+          $rendered .= " -->";
+        }
+        else
+        {
+          $rendered .= "\n";
+        }
+        
+        break;
+        
+      case HamlRule::CONTENT:   if($this->content) $rendered .= "$indent$this->content"; break;
+      case HamlRule::EXEC_ECHO: $rendered .= "$indent<?= $this->content ?>"; break;
+      case HamlRule::EXEC:    
+        
+        if(!($this->prev_sibling->action == HamlRule::EXEC && $this->prev_sibling->next->indent > $this->prev_sibling->indent))
+        {
+          $rendered .= "$indent<? ";
+        }
+    
+        $rendered .= "$this->content";
+        
+        if($this->next->indent > $this->indent)
+        {
+          $rendered .= " {";
+        }
+        
+        $rendered .= " ?>";
+        
+        break;
+    }
+    
     if($this->content)
     {
-      if($this->tag && $this->content)
-      {
-        for($i = 0; $i < $this->expect->indent_size; $i++)
-        {      
-          $rendered .= " ";
-        }
-      }
-      
-      switch($this->action)
-      {
-        case HamlRule::CONTENT:   $rendered .= "$indent$this->content"; break;
-        case HamlRule::EXEC_ECHO: $rendered .= "$indent<?= $this->content ?>"; break;
-        case HamlRule::EXEC:    
-          
-          if(!($this->prev_sibling->action == HamlRule::EXEC && $this->prev_sibling->next->indent > $this->prev_sibling->indent))
-          {
-            $rendered .= "$indent<? ";
-          }
-      
-          $rendered .= "$this->content";
-          
-          if($this->next->indent > $this->indent)
-          {
-            $rendered .= " {";
-          }
-          
-          $rendered .= " ?>";
-          
-          break;
-      }
-      
       $rendered .= "\n";
     }
     
@@ -101,13 +124,24 @@ class HamlRule
       $rendered .= $child->render();
     }
     
-    if($this->action == HamlRule::EXEC && $this->next->indent > $this->indent)
+    if($this->next->indent > $this->indent)
     {
-      $rendered .= "$indent<? } ";
-      
-      if(!($this->next_sibling->action == HamlRule::EXEC && $this->next_sibling->next->indent > $this->next_sibling->indent))
+      switch($this->action)
       {
-        $rendered .= " ?>\n";
+        case HamlRule::EXEC:
+          $rendered .= "$indent<? } ";
+          
+          if(!($this->next_sibling->action == HamlRule::EXEC && $this->next_sibling->next->indent > $this->next_sibling->indent))
+          {
+            $rendered .= " ?>\n";
+          }
+          
+          break;
+        
+        case HamlRule::COMMENT:
+          $rendered .= "$indent-->\n";
+          
+          break;
       }
     }
     
@@ -122,13 +156,12 @@ class HamlRule
 
 class Expectations
 {
-  public $indent_size;
+  static public $indent_size;
   public $max_indent;
   
   function __construct()
   {
     $this->indent_size = $this->max_indent = 0;
-    
   }
   
   function check($rule)
@@ -137,7 +170,8 @@ class Expectations
     
     if($rule->indent && !$this->indent_size)
     {
-      $this->indent_size = $rule->indent;
+      global $indent_size;
+      $indent_size =$this->indent_size = $rule->indent;
     }
     
     
@@ -178,7 +212,7 @@ class HamlParser extends lime_parser
 
   function add_rule($indent, $tag, $attr, $action, $content)
   {
-    if($tag == '' && $content == '')
+    if($action != HamlRule::COMMENT && $tag == '' && $content == '')
     { 
       return;
     }
@@ -246,6 +280,11 @@ class HamlParser extends lime_parser
   function process_content_rule($indent, $content)
   {
     $this->add_rule($indent, $this->_cur_tag, $this->_cur_attr, HamlRule::CONTENT, $content);
+  }
+  
+  function process_comment_rule($indent, $content)
+  {
+    $this->add_rule($indent, '', array(), HamlRule::COMMENT, $content);
   }
   
   function process_echo_rule($indent, $code)

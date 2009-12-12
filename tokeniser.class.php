@@ -108,7 +108,20 @@ class Tokeniser
          case '#': $token = new Token('ID', $this->get_name()); $this->skip_whitespace(); break;
          case '.': $token = new Token('CLASS', $this->get_name()); $this->skip_whitespace(); break;
          
-         case '-': $token = new Token('EXEC'); $this->skip_whitespace(); break;
+         case '-':
+           $c = $this->get_char();
+            
+           if($c == '#')
+           {
+             $token = new Token('HAML_COMMENT'); $this->skip_whitespace(); break;
+           }
+           else
+           {
+             $this->rewind();
+             $token = new Token('EXEC'); $this->skip_whitespace(); break;
+           }
+           
+         case '/': $token = new Token('COMMENT', $this->skip_whitespace()); break;
          case '=': 
          {
             $c = $this->get_char();

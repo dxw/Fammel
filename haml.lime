@@ -33,9 +33,11 @@ content = LINE_CONTENT
 |
 .
 
-rule = INDENT/i tag content/c  { /*echo "INDENT/i tag content/c ($i, $c)\n";      */  $this->process_content_rule($i, $c); }
-| INDENT/i tag ECHO content/c  { /*echo "INDENT/i tag ECHO content/c  ($i, $c)\n";*/  $this->process_echo_rule($i, $c); }
-| INDENT/i ECHO content/c      { /*echo "INDENT/i ECHO content/c ($i, $c)\n";     */  $this->process_echo_rule($i, $c); }
-| INDENT/i EXEC content/c      { /*echo "INDENT/i EXEC content/c ($i, $c)\n";     */  $this->process_exec_rule($i, $c); }
-| INDENT/i content/c           { /*echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); }
+rule = INDENT/i tag content/c  { echo "INDENT/i tag content/c ($i, $c)\n";        $this->process_content_rule($i, $c); }
+| INDENT/i tag ECHO content/c  { echo "INDENT/i tag ECHO content/c  ($i, $c)\n";  $this->process_echo_rule($i, $c); }
+| INDENT/i ECHO content/c      { echo "INDENT/i ECHO content/c ($i, $c)\n";       $this->process_echo_rule($i, $c); }
+| INDENT/i EXEC content/c      { echo "INDENT/i EXEC content/c ($i, $c)\n";       $this->process_exec_rule($i, $c); }
+| INDENT/i HAML_COMMENT content{ echo "INDENT/i EXEC content/c ($i, $c)\n";       }
+| INDENT/i COMMENT content/c   { echo "INDENT/i COMMENT content/c ($i, $c)\n";    $this->process_comment_rule($i, $c); }
+| INDENT/i content/c           { echo "INDENT/i content/c ($i, $c)\n";            $this->process_content_rule($i, $c); }
 .

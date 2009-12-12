@@ -37,7 +37,7 @@ var $i = array (
   array (
     'rule' => 's 3',
     'INDENT' => 's 4',
-    '#' => 'r 22',
+    '#' => 'r 24',
   ),
   3 => 
   array (
@@ -55,7 +55,9 @@ var $i = array (
     'tag' => 's 23',
     'ECHO' => 's 27',
     'EXEC' => 's 29',
-    'content' => 's 31',
+    'HAML_COMMENT' => 's 31',
+    'COMMENT' => 's 33',
+    'content' => 's 35',
     'INDENT' => 'r 16',
     '#' => 'r 16',
   ),
@@ -234,8 +236,32 @@ var $i = array (
   ),
   31 => 
   array (
+    'LINE_CONTENT' => 's 22',
+    'content' => 's 32',
+    'INDENT' => 'r 16',
+    '#' => 'r 16',
+  ),
+  32 => 
+  array (
     'INDENT' => 'r 21',
     '#' => 'r 21',
+  ),
+  33 => 
+  array (
+    'LINE_CONTENT' => 's 22',
+    'content' => 's 34',
+    'INDENT' => 'r 16',
+    '#' => 'r 16',
+  ),
+  34 => 
+  array (
+    'INDENT' => 'r 22',
+    '#' => 'r 22',
+  ),
+  35 => 
+  array (
+    'INDENT' => 'r 23',
+    '#' => 'r 23',
   ),
 );
 function reduce_0_haml_file_1($tokens, &$result) {
@@ -395,7 +421,7 @@ function reduce_17_rule_1($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- /*echo "INDENT/i tag content/c ($i, $c)\n";      */  $this->process_content_rule($i, $c); 
+ echo "INDENT/i tag content/c ($i, $c)\n";        $this->process_content_rule($i, $c); 
 }
 
 function reduce_18_rule_2($tokens, &$result) {
@@ -405,7 +431,7 @@ function reduce_18_rule_2($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[3];
- /*echo "INDENT/i tag ECHO content/c  ($i, $c)\n";*/  $this->process_echo_rule($i, $c); 
+ echo "INDENT/i tag ECHO content/c  ($i, $c)\n";  $this->process_echo_rule($i, $c); 
 }
 
 function reduce_19_rule_3($tokens, &$result) {
@@ -415,7 +441,7 @@ function reduce_19_rule_3($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- /*echo "INDENT/i ECHO content/c ($i, $c)\n";     */  $this->process_echo_rule($i, $c); 
+ echo "INDENT/i ECHO content/c ($i, $c)\n";       $this->process_echo_rule($i, $c); 
 }
 
 function reduce_20_rule_4($tokens, &$result) {
@@ -425,22 +451,41 @@ function reduce_20_rule_4($tokens, &$result) {
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[2];
- /*echo "INDENT/i EXEC content/c ($i, $c)\n";     */  $this->process_exec_rule($i, $c); 
+ echo "INDENT/i EXEC content/c ($i, $c)\n";       $this->process_exec_rule($i, $c); 
 }
 
 function reduce_21_rule_5($tokens, &$result) {
 #
-# (21) rule :=  INDENT  content
+# (21) rule :=  INDENT  HAML_COMMENT  content
+#
+$result = reset($tokens);
+$i =& $tokens[0];
+ echo "INDENT/i EXEC content/c ($i, $c)\n";       
+}
+
+function reduce_22_rule_6($tokens, &$result) {
+#
+# (22) rule :=  INDENT  COMMENT  content
+#
+$result = reset($tokens);
+$i =& $tokens[0];
+$c =& $tokens[2];
+ echo "INDENT/i COMMENT content/c ($i, $c)\n";    $this->process_comment_rule($i, $c); 
+}
+
+function reduce_23_rule_7($tokens, &$result) {
+#
+# (23) rule :=  INDENT  content
 #
 $result = reset($tokens);
 $i =& $tokens[0];
 $c =& $tokens[1];
- /*echo "INDENT/i content/c ($i, $c)\n";          */  $this->process_content_rule($i, $c); 
+ echo "INDENT/i content/c ($i, $c)\n";            $this->process_content_rule($i, $c); 
 }
 
-function reduce_22_start_1($tokens, &$result) {
+function reduce_24_start_1($tokens, &$result) {
 #
-# (22) 'start' :=  haml_file
+# (24) 'start' :=  haml_file
 #
 $result = reset($tokens);
 
@@ -469,7 +514,9 @@ var $method = array (
   19 => 'reduce_19_rule_3',
   20 => 'reduce_20_rule_4',
   21 => 'reduce_21_rule_5',
-  22 => 'reduce_22_start_1',
+  22 => 'reduce_22_rule_6',
+  23 => 'reduce_23_rule_7',
+  24 => 'reduce_24_start_1',
 );
 var $a = array (
   0 => 
@@ -601,10 +648,22 @@ var $a = array (
   21 => 
   array (
     'symbol' => 'rule',
-    'len' => 2,
+    'len' => 3,
     'replace' => true,
   ),
   22 => 
+  array (
+    'symbol' => 'rule',
+    'len' => 3,
+    'replace' => true,
+  ),
+  23 => 
+  array (
+    'symbol' => 'rule',
+    'len' => 2,
+    'replace' => true,
+  ),
+  24 => 
   array (
     'symbol' => '\'start\'',
     'len' => 1,
