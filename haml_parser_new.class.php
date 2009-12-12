@@ -7,6 +7,7 @@ class HamlRule
   const EXEC = 'exec';
   const ROOT = 'root';
   const COMMENT = 'comment';
+  const DOCTYPE = 'doctype';
   
   public $indent;
   public $tag;
@@ -41,6 +42,54 @@ class HamlRule
     global $indent_size;
     
     $indent = $rendered = '';
+    
+    if($this->action == HamlRule::DOCTYPE)
+    {
+      $this->content = trim(strtolower($this->content));
+      
+      if(preg_match('/^xml/', $this->content))
+      {
+        $charset = trim(str_replace('xml', '', $this->content));
+        
+        if(!$charset)
+        {
+          $charset = 'utf-8';
+        }
+        
+        $rendered .= "<?xml version='1.0' encoding='$charset' ?>\n";
+      }
+      else
+      {
+        switch($this->content)
+        {
+          default:
+          case '5':
+            $rendered .= '<!DOCTYPE html>'; break;
+          case '1.0 transitional':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'; break;
+          case 'strict':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'; break;
+          case 'frameset':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">'; break;
+          case '1.1':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">'; break;
+          case 'basic':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN" "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">'; break; 
+          case 'mobile':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">'; break;
+          case '4.01 transitional':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'; break;
+          case '4.01 strict':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'; break;
+          case '4.01 frameset':
+            $rendered .= '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">'; break;
+        }
+        
+        $rendered .= "\n";
+      }
+      
+      return $rendered;
+    }
         
     for($i = 0; $i < $this->indent; $i++)
     {      
@@ -152,15 +201,16 @@ class HamlRule
 class Expectations
 {
   public $indent_size;
-  public $max_indent;
   protected $_got_indent_size;
+  protected $_last_indent;
   
   function __construct()
   {
     global $indent_size;
     
     $this->_got_indent_size = false;
-    $this->indent_size = $this->max_indent = $indent_size = 2;
+    $this->indent_size = $indent_size = 2;
+    $this->_last_indent = 0;
   }
   
   function check($rule)
@@ -176,15 +226,23 @@ class Expectations
     
     
     //
-    // Is the indent 0 or a multiple of the indent size?
+    // Is the indent 0, a multiple of the indent size and not more than one 
+    // level deeper than the previous rule?
     //
     
-    if($this->indent_size)
+    if($this->_got_indent_size)
     {
       if($rule->indent % $this->indent_size != 0)
       {
-        throw new FammelIndentExeption("Parse error: inconsistent indenting near line $LINE");
+        throw new FammelIndentExeption("Parse error: indent ($rule->indent) is not a multiple of the current indent size ($this->indent_size) on or near line " . ($LINE -1), $LINE-1);
       }
+      
+      if($rule->indent > $this->_last_indent + $this->indent_size)
+      {
+        throw new FammelIndentExeption("Parse error: indent is too large on or near line " . ($LINE -1), $LINE-1);
+      }
+        
+      $this->_last_indent = $rule->indent; 
     }
   }
 }
@@ -212,7 +270,7 @@ class HamlParser extends lime_parser
 
   function add_rule($indent, $tag, $attr, $action, $content)
   {
-    if($action != HamlRule::COMMENT && $tag == '' && $content == '')
+    if($action != HamlRule::COMMENT && $action != HamlRule::DOCTYPE && $tag == '' && $content == '')
     { 
       return;
     }
@@ -303,6 +361,11 @@ class HamlParser extends lime_parser
   function process_exec_rule($indent, $code)
   {
     $this->add_rule($indent, $this->_cur_tag, $this->_cur_attr, HamlRule::EXEC, $code);
+  }
+  
+  function process_doctype($doctype)
+  {
+    $this->add_rule(0, '', array(), HamlRule::DOCTYPE, $doctype);
   }
   
   function print_ast()
