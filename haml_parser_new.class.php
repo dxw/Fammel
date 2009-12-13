@@ -354,7 +354,7 @@ class HamlParser extends lime_parser
     {
       case 'PLAIN_ECHO':
       case 'ESCAPED_ECHO':
-        $code = "htmlentities($code);";
+        $code = "htmlentities($code, ENT_COMPAT);";
         break;
     }
     
