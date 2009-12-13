@@ -167,7 +167,7 @@ class Tokeniser
           $this->skip_whitespace();
           
           // Eat the opening quote
-          $c = $this->get_char();
+          $c = $this->get_char(); 
 
           if($c == '"')
           {
@@ -385,7 +385,7 @@ class Tokeniser
     {
       $token = $token . $c;
     }
-    while(strlen($c =$this->get_char()) && preg_match('/^[a-zA-Z-]+$/', $c));  
+    while(strlen($c = $this->get_char()) && preg_match('/^[a-zA-Z:-]+$/', $c));  
     
     $this->rewind();
     return $token;
